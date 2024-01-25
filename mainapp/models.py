@@ -7,11 +7,35 @@ from django.conf import settings
 
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    address = models.CharField(max_length=100)
 
-    def __str__(self):
-        return f"{self.user.username}"
+class Customers(models.Model):
+    CustomerID = models.AutoField(primary_key=True)
+    Name = models.CharField(max_length=100)
+    Email = models.EmailField()
+    PasswordHash = models.CharField(max_length=100)#to be modified later
+    IsAdmin = models.CharField(max_length=100)#to be modified later
     
+    def __str__(self):
+        return (f"{self.Name}")
+
+class Orders(models.Model):
+    OrderID = models.AutoField(primary_key=True)
+    CustomerID = models.ForeignKey(Customers, on_delete=models.CASCADE)
+    CreatedAt = models.DateTimeField(auto_now_add=True)
+
+class OrderItems(models.Model):
+    OrderItemID = models.AutoField(primary_key=True)
+    OrderID = models.ForeignKey(Orders, on_delete=models.CASCADE)
+    BookID = models.ForeignKey(Books, on_delete=models.CASCADE)
+    Quantity = models.IntegerField()
+    Price = models.FloatField()
+
+class Payments(models.Model):
+    PaymentID = models.AutoField(primary_key=True)
+    OrderID = models.ForeignKey(Orders, on_delete=models.CASCADE)
+    Amount = models.FloatField()
+    PaymentDate = models.DateTimeField(auto_now_add=True)
+
 
 class Category(models.Model):
     Category_ID = models.AutoField(primary_key=True)
