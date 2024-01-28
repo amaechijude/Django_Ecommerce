@@ -47,15 +47,11 @@ class Payment(models.Model):
     Amount = models.FloatField()
     PaymentDate = models.DateTimeField(auto_now_add=True)
 
-
 class Category(models.Model):
     Category_ID = models.AutoField(primary_key=True)
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to='category')
 
-    class Meta:
-        verbose_name_plural = "Categories"
-    
     def __str__(self):
         return f'{self.title}'
 
@@ -66,7 +62,6 @@ class Vendor(models.Model):
     Vendor_Image = models.ImageField(upload_to="vendor")
     Address = models.CharField(max_length=100)
     Description = models.TextField(null=True, blank=True)
-
 
     def __str__(self):
         return f'{self.title}'
