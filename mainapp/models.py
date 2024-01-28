@@ -8,31 +8,42 @@ from django.conf import settings
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
-class Customers(models.Model):
+class Item(models.Model):
+    ItemID = models.AutoField(primary_key=True)
+    Title = models.CharField(max_length=100)
+    Price = models.FloatField()
+    Stock = models.IntegerField()
+    
+    def __str__(self):
+        return (f"{self.Title}")
+
+
+class Customer(models.Model):
     CustomerID = models.AutoField(primary_key=True)
     Name = models.CharField(max_length=100)
     Email = models.EmailField()
-    PasswordHash = models.CharField(max_length=100)#to be modified later
-    IsAdmin = models.CharField(max_length=100)#to be modified later
+    Address = models.CharField(max_length=100)
+    Phone_No = models.CharField(max_length=14)
+    image = models.ImageField(upload_to='customers')
     
     def __str__(self):
         return (f"{self.Name}")
 
-class Orders(models.Model):
+class Order(models.Model):
     OrderID = models.AutoField(primary_key=True)
-    CustomerID = models.ForeignKey(Customers, on_delete=models.CASCADE)
+    CustomerID = models.ForeignKey(Customer, on_delete=models.CASCADE)
     CreatedAt = models.DateTimeField(auto_now_add=True)
 
-class OrderItems(models.Model):
+class OrderItem(models.Model):
     OrderItemID = models.AutoField(primary_key=True)
-    OrderID = models.ForeignKey(Orders, on_delete=models.CASCADE)
-    BookID = models.ForeignKey(Books, on_delete=models.CASCADE)
+    OrderID = models.ForeignKey(Order, on_delete=models.CASCADE)
+    ItemID = models.ForeignKey(Item, on_delete=models.CASCADE)
     Quantity = models.IntegerField()
     Price = models.FloatField()
 
-class Payments(models.Model):
+class Payment(models.Model):
     PaymentID = models.AutoField(primary_key=True)
-    OrderID = models.ForeignKey(Orders, on_delete=models.CASCADE)
+    OrderID = models.ForeignKey(Order, on_delete=models.CASCADE)
     Amount = models.FloatField()
     PaymentDate = models.DateTimeField(auto_now_add=True)
 
