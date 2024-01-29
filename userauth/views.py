@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from django.contrib.auth import login, logout, authenticate
+from ..mainapp.views import home
 
 from .models import User
 from .forms import UserForm
@@ -9,4 +12,10 @@ def signup(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid:
-            user = User.objects.create_user
+            new_user = form.save()
+            new_user = authenticate(username=new_user.username, password=form.cleaned_data["password1"])
+            login(request, new_user)
+            return redirect('home')
+    form = UserForm
+    content = {"form": form}
+    return render(request, 'signup.html', content)
