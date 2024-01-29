@@ -6,9 +6,7 @@ from .models import User
 from .forms import UserForm
 from django.contrib import messages
 
-import sys
-sys.path.append('..')
-from mainapp.views import home
+from .. import mainapp as home
  
 # Create your views here.
 
