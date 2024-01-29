@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect
+from django.conf import settings
 
 from django.contrib.auth import login, logout, authenticate
-from ..mainapp.views import home
-
 from .models import User
 from .forms import UserForm
 from django.contrib import messages
+
+import sys
+sys.path.append('..')
+from mainapp.views import home
+ 
 # Create your views here.
 
 def signup(request):
