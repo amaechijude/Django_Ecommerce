@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import UserProfile
 
 class UserForm(forms.ModelForm):
     username = forms.CharField(required=True)
@@ -18,5 +18,5 @@ class UserForm(forms.ModelForm):
         return cleaned_data
 
     class Meta:
-        model = User
+        model = UserProfile
         fields = ('username', 'email', 'password')
