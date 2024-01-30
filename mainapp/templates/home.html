@@ -1,0 +1,8 @@
+{% if user.is_authenticated %}
+<h1>Hello</h1>
+
+{% endif %}
+
+<form action="{% url 'home' %}" method="POST">
+    csrf_token 
+</form>
