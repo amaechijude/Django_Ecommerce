@@ -12,13 +12,20 @@
     <h1>
         Welcome to our e commerce shop
     </h1>
+    <p>
+        <a href="{% url 'signout' %}">Log out</a>
+    </p>
     {% else %}
-    <form action="{% url 'home' %}">
+    <form action="{% url 'home' %}" method="post">
+        {% csrf_token %}
         <input type="text" name="username" placeholder="username">
         <input type="password" name="password1" placeholder="password">
-        <input type="submit" value="signup">
+        <input type="submit" value="Login">
     </form>
-    
+    <br><hr>
+    <p>
+        <a href="{% url 'signup' %}">Sign Up</a>
+    </p>
     {% endif %}
     
 </body>

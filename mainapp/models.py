@@ -1,15 +1,8 @@
 from django.db import models
 
-from django.utils.html import mark_safe
-from django.conf import settings
+from django.contrib.auth.models import User
 
 # Create your models here.
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    username = models.CharField(max_length=100)
-    email = models.EmailField()
-    password = models.CharField(max_length=100)
 
 class Item(models.Model):
     ItemID = models.AutoField(primary_key=True)
@@ -23,6 +16,7 @@ class Item(models.Model):
 
 class Customer(models.Model):
     CustomerID = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     Name = models.CharField(max_length=100)
     Email = models.EmailField()
     Address = models.CharField(max_length=100)

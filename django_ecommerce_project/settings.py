@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp',
-    'userauth',
 ]
 
 MIDDLEWARE = [
@@ -135,7 +134,3 @@ JAZZMIN_SETTINGS = {
     'site_header': 'Amaechi E-cdmmerce App',
     "site_header": "Ecommerce",
 }
-
-
-
-AUTH_USER_MODEL = 'userauth.User'
