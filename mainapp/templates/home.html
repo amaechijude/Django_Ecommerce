@@ -1,8 +1,25 @@
-{% if user.is_authenticated %}
-<h1>Hello</h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    {% if user.is_authenticated%}
 
-{% endif %}
-
-<form action="{% url 'home' %}" method="POST">
-    csrf_token 
-</form>
+    <h1>
+        Welcome to our e commerce shop
+    </h1>
+    {% else %}
+    <form action="{% url 'home' %}">
+        <input type="text" name="username" placeholder="username">
+        <input type="password" name="password1" placeholder="password">
+        <input type="submit" value="signup">
+    </form>
+    
+    {% endif %}
+    
+</body>
+</html>

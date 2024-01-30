@@ -9,7 +9,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     username = models.CharField(max_length=100)
     email = models.EmailField()
-    password = models.CharField()
+    password = models.CharField(max_length=100)
 
 class Item(models.Model):
     ItemID = models.AutoField(primary_key=True)
