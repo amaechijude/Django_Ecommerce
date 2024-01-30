@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 class UserForm(UserCreationForm):
     username = forms.CharField(required=True)
     email = forms.EmailField(required=True)
-    #password1 = forms.CharField(widget=forms.PasswordInput)
-    #password2 = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
         model = User

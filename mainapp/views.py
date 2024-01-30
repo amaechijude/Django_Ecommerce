@@ -11,7 +11,7 @@ def signout(request):
     messages.info(request, "You've loged out")
     return redirect('home')
 
-def home(request, pk=0):
+def home(request):
     if request.user.is_authenticated:
         return render(request, 'home.html')
     else:
