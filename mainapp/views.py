@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from .forms import UserForm
+from django.contrib.auth.models import User
 # Create your views here.
 
 def signout(request):
@@ -10,7 +11,7 @@ def signout(request):
     messages.info(request, "You've loged out")
     return redirect('home')
 
-def home(request):
+def home(request, pk=0):
     if request.user.is_authenticated:
         return render(request, 'home.html')
     else:
